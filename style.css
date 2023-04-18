@@ -7,15 +7,16 @@ body {
 }
 
 .form {
+    min-width: 300px;
+    /* width: 30%; */
     background-color: #f0ffff;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    /* width: 30%; */
-    margin: 20px 200px 200px 200px;
+    margin: 20px 400px 400px 400px;
     border-style: solid;
-    padding: 100px 100px 100px 100px;
+    padding: 100px;
 }
 
 #button {
@@ -31,4 +32,21 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 100px;
+}
+
+ul {
+    display: flex;
+    max-width: 250px;
+    position: relative;
+    padding: 100px 100px 100px 100px;
+    /* margin: 20px 400px 400px 400px; */
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+}
+
+h1, h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
