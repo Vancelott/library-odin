@@ -1,19 +1,22 @@
-let myLibrary = [];
-const addBook = document.querySelector("button")
+const addBtn = document.querySelector("button")
 const submitBook = document.getElementById("submit")
 const form = document.createElement("form")
-var title = document.createElement("input") 
-var author = document.createElement("input")
-var total = document.createElement("input")
-var read = document.createElement("input")
+const title = document.createElement("input");
+const author = document.createElement("input");
+const total = document.createElement("input");
+const read = document.createElement("input");
 
-addBook.addEventListener("click", function() {
+addBtn.addEventListener("click", function() {
     if(form.length < 4) {
     form.setAttribute('class', 'form')
         title.setAttribute("placeholder", "Book title")
+        title.setAttribute("type", "text");
             author.setAttribute("placeholder", "Author")
+            author.setAttribute("type", "text");
                 total.setAttribute("placeholder", "Total pages")
+                total.setAttribute("type", "number");
                     read.setAttribute("placeholder", "Pages read")
+                    read.setAttribute("type", "number");
                         form.appendChild(title)
                         form.appendChild(author)
                         form.appendChild(total)
@@ -23,38 +26,94 @@ addBook.addEventListener("click", function() {
     }
 });
 
-addBook.addEventListener("click", function() {
+addBtn.addEventListener("click", function() {
     form.style.display = "flex"
 });
 
-addBook.addEventListener("click", function() {
+addBtn.addEventListener("click", function() {
     submitBtn.display = "block"
 });
 
-var submitBtn = document.getElementById("submit").style;
+const submitBtn = document.getElementById("submit").style;
 
 submitBook.addEventListener("click", function(){
     form.style.display = "none"
 });
 
-submitBook.addEventListener("click", function() {
-    const book = document.createElement("div");
-    book.setAttribute("class", 'addedBook')
-    var li = document.createElement("li");
-    document.querySelector("body").appendChild(book)
+// Adding a new book using the submit button 
 
+let j = 0;
+
+function addBook() {
+    const book = document.createElement("div");
+        book.setAttribute("class", "addedBook" + j);
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "X";
+        deleteBtn.addEventListener("click", () => {
+        book.remove();
+    });
+    book.appendChild(deleteBtn);
+    const li = document.createElement("li");
+    li.style.listStyle = "none";
+    book.appendChild(li);
     const inputValues = [title.value, author.value, total.value, read.value];
-    for (let i = 0; i < inputValues.length; i++) {
-      const textNode = document.createTextNode(inputValues[i]);
-      li.appendChild(textNode);
+        if (inputValues.some(val => val.length > 0)) {
+            for (let i = 0; i < inputValues.length; i++) {
+                const textNode = document.createTextNode(inputValues[i]);
+                li.appendChild(textNode);
+                    if (i < inputValues.length - 1) {
+                    const br = document.createElement("br");
+                    li.appendChild(br);
+            }
+        }
+        j++;
+        document.querySelector("body").appendChild(book);
+    }
+};
   
-      if (i < inputValues.length - 1) {
-        const br = document.createElement("br");
-        li.appendChild(br);
-      }
-    }  
-    book.appendChild(li)
+submitBook.addEventListener("click", addBook);
+
+
+submitBook.addEventListener("click", function() {
+    title.value = "";
+    author.value = "";
+    total.value= "";
+    read.value = "";
 });
+
+// addBook.prototype = function(){
+//     Object.create(addBook.prototype)
+// }
+
+// addBook.prototype.cloneBook = function() {
+//     if("title.value, author.value, total.value, read.value".length > 0){    
+//         const inputValues = [title.value, author.value, total.value, read.value];
+//             for (let i = 0; i < inputValues.length; i++) {
+//                 const textNode = document.createTextNode(inputValues[i]);
+//                 li.appendChild(textNode);
+//                     if (i < inputValues.length - 1) {
+//                         const br = document.createElement("br");
+//                         li.appendChild(br);
+//                     }
+//             }
+//         }
+// };
+
+// submitBook.addEventListener("click", cloneBook);
+
+// function deleteDiv () {
+//     const book1 = document.getElementById('li');
+//     li.parentElement.remove()
+// }
+
+// deleteBtn.addEventListener("click", function() {
+//     const book1 = document.getElementById('li');
+//     li.parentElement.remove()
+// });
+
+// function createListElement() {
+// 	deleteBtn.onclick = removeParent;
+// }
 
 // function Book(title, author, total, read) {
 //         this.title = title;
@@ -80,6 +139,6 @@ submitBook.addEventListener("click", function() {
 
 // document.querySelectorAll('input')[0].value;
 
-function addBookToLibrary() {
-  // do stuff here
-}
+// function addBookToLibrary() {
+//   do stuff here
+// }

@@ -1,49 +1,95 @@
 html {
     height: 100%;
-    background-color: rgb(208, 226, 177);
+    background-color: #87CBB9;
 }
 body {
     min-height: 100%;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 .form {
-    min-width: 300px;
-    /* width: 30%; */
-    background-color: #f0ffff;
+    width: 15%;
+    background-color: #B9EDDD;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 20px 400px 400px 400px;
     border-style: solid;
+    border-color: #577D86;
     padding: 100px;
-}
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
 #button {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 200px;
+    position: relative;
+    padding-top: 100px;
 }
 
 #submit {
+    list-style-type: none;
     display: none;
     position:relative;
     justify-content: center;
     align-items: center;
-    margin-top: 100px;
+    margin-top: 70px;
 }
 
-ul {
+.addedBook0 {
+    display: grid;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 20%;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    border: solid 10px;
+    border-color: #87CBB9 ;
+    background-color: #577D86;
+}
+
+.addedBook1 {
+    display: grid;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 20%;
+    height: 500px;
+    align-items: center;
+    justify-content: center;
+    border: solid 10px;
+    border-color: #87CBB9 ;
+    background-color: #577D86;
+}
+
+#delete {
+    display: none
+}
+
+/* li.addedBook:not(:last-child) { 
+    margin-bottom: 35px;  
+ }  */
+
+
+/* .li {
+    list-style-type: none;
     display: flex;
     max-width: 250px;
     position: relative;
     padding: 100px 100px 100px 100px;
-    /* margin: 20px 400px 400px 400px; */
+    margin: 20px 400px 400px 400px;
     justify-content: center;
     align-items: center;
     background-color: red;
 }
+*/
 
 h1, h2 {
     display: flex;
