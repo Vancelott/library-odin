@@ -6,11 +6,21 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<title></title>
 </head>
+<style>
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+	  -webkit-appearance: none;
+	  margin: 0;
+	}
+	input[type=number] {
+  	-moz-appearance: textfield;
+	}
+	</style>
 <body>
 	<h1>Personal Library</h1>
-	<h2>Keep track of your library</h2>
+	<h2>Keep track of your books</h2>
 	<div id="button" class="popup">
-		<button type="button">Add book</button>
+		<button id="add" type="button">Add book</button>
 		<button id="submit" type="button">Submit</button>
 	</div>
 	<script type="text/javascript" src="script.js"></script>

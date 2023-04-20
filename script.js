@@ -6,6 +6,9 @@ const author = document.createElement("input");
 const total = document.createElement("input");
 const read = document.createElement("input");
 
+const formBox = document.createElement("div");
+    formBox.setAttribute("class", "form-box");
+
 addBtn.addEventListener("click", function() {
     if(form.length < 4) {
     form.setAttribute('class', 'form')
@@ -15,15 +18,23 @@ addBtn.addEventListener("click", function() {
             author.setAttribute("type", "text");
                 total.setAttribute("placeholder", "Total pages")
                 total.setAttribute("type", "number");
+                total.setAttribute("class", "number");
                     read.setAttribute("placeholder", "Pages read")
                     read.setAttribute("type", "number");
+                    read.setAttribute("class", "number");
                         form.appendChild(title)
                         form.appendChild(author)
                         form.appendChild(total)
                         form.appendChild(read);
     document.querySelector("body").appendChild(form);
+    document.querySelector("body").appendChild(formBox);
     form.appendChild(submitBook)
+    formBox.appendChild(form)
     }
+});
+
+addBtn.addEventListener("click", function() {
+    form.classList.toggle("hidden");
 });
 
 addBtn.addEventListener("click", function() {
@@ -46,23 +57,25 @@ let j = 0;
 const library = document.createElement("div");
     library.setAttribute("id", "library");
 
+function createButton(text, className, clickListener){
+    const button = document.createElement("button");
+    button.textContent = text;
+    button.classList = className;
+    button.addEventListener("click", clickListener);
+    return button;
+}
+
 function addBook() {
     const book = document.createElement("div");
         book.setAttribute("id", "bookStyle");
         book.setAttribute("class", "addedBook" + j);
-        const readBtn = document.createElement("button");
-            readBtn.classList = "read"
-            readBtn.textContent = "Read";
-            readBtn.addEventListener("click", () => {
+        const readBtn = createButton("Read", "read", () => {
             if(readBtn.innerHTML=="Read"){
                 readBtn.innerHTML="Not read";}
             else{
                 readBtn.innerHTML="Read";}
         });
-        const deleteBtn = document.createElement("button");
-            deleteBtn.textContent = "X";
-            deleteBtn.classList = "delete"
-            deleteBtn.addEventListener("click", () => {
+        const deleteBtn = createButton("X", "delete", () => {
             book.remove();
         });
             book.appendChild(deleteBtn);
@@ -73,8 +86,8 @@ function addBook() {
             const inputValues = [title.value, author.value, total.value, read.value];
                 if (inputValues.some(val => val.length > 0)) {
                     for (let i = 0; i < inputValues.length; i++) {
-                        const textNode = document.createTextNode(inputValues[i]);
                         const propertiesText = document.createTextNode(properties[i]);
+                        const textNode = document.createTextNode(inputValues[i]);
                         li.appendChild(propertiesText)
                         li.appendChild(textNode);
                             if (i < inputValues.length - 1) {
@@ -86,8 +99,11 @@ function addBook() {
                 document.querySelector("body").appendChild(library);
                 document.querySelector("body").appendChild(book);
                 book.appendChild(readBtn);
+                library.appendChild(book);
     }
-    library.appendChild(book);
+    else {
+        alert("Please fill in the book details")
+    }
 };
 
 submitBook.addEventListener("click", addBook);
@@ -100,65 +116,3 @@ submitBook.addEventListener("click", function() {
     total.value= "";
     read.value = "";
 });
-
-// addBook.prototype = function(){
-//     Object.create(addBook.prototype)
-// }
-
-// addBook.prototype.cloneBook = function() {
-//     if("title.value, author.value, total.value, read.value".length > 0){    
-//         const inputValues = [title.value, author.value, total.value, read.value];
-//             for (let i = 0; i < inputValues.length; i++) {
-//                 const textNode = document.createTextNode(inputValues[i]);
-//                 li.appendChild(textNode);
-//                     if (i < inputValues.length - 1) {
-//                         const br = document.createElement("br");
-//                         li.appendChild(br);
-//                     }
-//             }
-//         }
-// };
-
-// submitBook.addEventListener("click", cloneBook);
-
-// function deleteDiv () {
-//     const book1 = document.getElementById('li');
-//     li.parentElement.remove()
-// }
-
-// deleteBtn.addEventListener("click", function() {
-//     const book1 = document.getElementById('li');
-//     li.parentElement.remove()
-// });
-
-// function createListElement() {
-// 	deleteBtn.onclick = removeParent;
-// }
-
-// function Book(title, author, total, read) {
-//         this.title = title;
-//         this.author = author;
-//         this.total = total;
-//         this.read = read;
-// }
-
-// myLibrary.forEach(Book()) {
-
-// }
-
-// function showSubmit() {
-//     var x = document.querySelector("submit");
-//     if (x.style.display === "none") {
-//         x.style.display = "block";
-//     } else {
-//         x.style.display = "none";
-//     }
-// }
-
-// addBook.addEventListener("click", showSubmit())
-
-// document.querySelectorAll('input')[0].value;
-
-// function addBookToLibrary() {
-//   do stuff here
-// }
