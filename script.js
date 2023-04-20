@@ -40,39 +40,59 @@ submitBook.addEventListener("click", function(){
     form.style.display = "none"
 });
 
-// Adding a new book using the submit button 
+// Adding a new book using the submit btn, a delete btn and a read/not read btn
 
 let j = 0;
+const library = document.createElement("div");
+    library.setAttribute("id", "library");
 
 function addBook() {
     const book = document.createElement("div");
+        book.setAttribute("id", "bookStyle");
         book.setAttribute("class", "addedBook" + j);
+        const readBtn = document.createElement("button");
+            readBtn.classList = "read"
+            readBtn.textContent = "Read";
+            readBtn.addEventListener("click", () => {
+            if(readBtn.innerHTML=="Read"){
+                readBtn.innerHTML="Not read";}
+            else{
+                readBtn.innerHTML="Read";}
+        });
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "X";
-        deleteBtn.addEventListener("click", () => {
-        book.remove();
-    });
-    book.appendChild(deleteBtn);
-    const li = document.createElement("li");
-    li.style.listStyle = "none";
-    book.appendChild(li);
-    const inputValues = [title.value, author.value, total.value, read.value];
-        if (inputValues.some(val => val.length > 0)) {
-            for (let i = 0; i < inputValues.length; i++) {
-                const textNode = document.createTextNode(inputValues[i]);
-                li.appendChild(textNode);
-                    if (i < inputValues.length - 1) {
-                    const br = document.createElement("br");
-                    li.appendChild(br);
-            }
-        }
-        j++;
-        document.querySelector("body").appendChild(book);
+            deleteBtn.textContent = "X";
+            deleteBtn.classList = "delete"
+            deleteBtn.addEventListener("click", () => {
+            book.remove();
+        });
+            book.appendChild(deleteBtn);
+            const li = document.createElement("li");
+            li.style.listStyle = "none";
+            book.appendChild(li);
+            const properties = ["Title: ", "Author: ", "Total pages: ", "Pages read: "];
+            const inputValues = [title.value, author.value, total.value, read.value];
+                if (inputValues.some(val => val.length > 0)) {
+                    for (let i = 0; i < inputValues.length; i++) {
+                        const textNode = document.createTextNode(inputValues[i]);
+                        const propertiesText = document.createTextNode(properties[i]);
+                        li.appendChild(propertiesText)
+                        li.appendChild(textNode);
+                            if (i < inputValues.length - 1) {
+                            const br = document.createElement("br");
+                            li.appendChild(br);
+                    }
+                }
+                j++;
+                document.querySelector("body").appendChild(library);
+                document.querySelector("body").appendChild(book);
+                book.appendChild(readBtn);
     }
+    library.appendChild(book);
 };
-  
+
 submitBook.addEventListener("click", addBook);
 
+// Clear input fields
 
 submitBook.addEventListener("click", function() {
     title.value = "";
